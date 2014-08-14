@@ -32,32 +32,38 @@ define(['model/_memberModel'], function() {
 
  	validate: function(attrs,options){
             var validationMessage = "";
-            var a=this.getDisplay('birthDate');
-            var b = App.Utils.Converter.date.toDate("01/01/1995");
+            var fecha=attrs.birthDate;
+            var anio=parseInt(fecha.substring(5,9));
+            var b=new Date().getFullYear();
+            var num=b-anio;
             if(!attrs.name){
                 validationMessage = "The name can't be empty.";
             }
-            else if(!attrs.firstName){
+            if(!attrs.firstName){
                 validationMessage = "The first name can't be empty.";
             }
-            else if(!attrs.lastName){
+            if(!attrs.lastName){
                 validationMessage = "The last name can't be empty.";
             }
-            else if(!attrs.birthDate){
+            if(!attrs.birthDate){
                 validationMessage = "The birth date can't be empty.";
             }
-            else if(!attrs.docNumber){
+            if(!attrs.docNumber){
                 validationMessage = "The document number can't be empty.";
             }
-            else if(attrs.documenttypeId===""){
+            if(attrs.documenttypeId===""){
                 validationMessage = "You must select a valid type of ID";
             }
-            else if(attrs.partneridId===""){
+            if(attrs.partneridId===""){
                 validationMessage = "You must select a valid partner ID";
             }
-            else if(a<b)
+            if(num>100)
             {
                 validationMessage = "You must select a valid birth date";
+            }
+            if(attrs.docNumber.length<5)
+            {
+                validationMessage = "You must select a 5 or more document number";
             }
             if(validationMessage.length>0){
                return validationMessage;
