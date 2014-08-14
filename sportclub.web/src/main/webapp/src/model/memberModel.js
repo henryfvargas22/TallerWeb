@@ -32,28 +32,30 @@ define(['model/_memberModel'], function() {
 
  	validate: function(attrs,options){
             var validationMessage = "";
+            var a=this.getDisplay('birthDate');
+            var b = App.Utils.Converter.date.toDate("01/01/1995");
             if(!attrs.name){
                 validationMessage = "The name can't be empty.";
             }
-            if(!attrs.firstName){
+            else if(!attrs.firstName){
                 validationMessage = "The first name can't be empty.";
             }
-            if(!attrs.lastName){
+            else if(!attrs.lastName){
                 validationMessage = "The last name can't be empty.";
             }
-            if(!attrs.birthDate){
+            else if(!attrs.birthDate){
                 validationMessage = "The birth date can't be empty.";
             }
-            if(!attrs.docNumber){
+            else if(!attrs.docNumber){
                 validationMessage = "The document number can't be empty.";
             }
-            if(attrs.documenttypeId===""){
+            else if(attrs.documenttypeId===""){
                 validationMessage = "You must select a valid type of ID";
             }
-            if(attrs.partneridId===""){
+            else if(attrs.partneridId===""){
                 validationMessage = "You must select a valid partner ID";
             }
-            if(App.Utils.Converter.date.toDate(attrs.birthDate)<App.Utils.Converter.date.toDate("01/01/1915"))
+            else if(a<b)
             {
                 validationMessage = "You must select a valid birth date";
             }
