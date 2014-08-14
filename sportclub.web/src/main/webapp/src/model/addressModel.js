@@ -32,6 +32,34 @@ define(['model/_addressModel'], function() {
 
  	validate: function(attrs,options){
             var validationMessage = "";
+            if(!attrs.street)
+            {
+                validationMessage="You must select a valid street number";
+            }
+            if(!attrs.avenue)
+            {
+                validationMessage="You must select a valid avenue name";
+            }
+            if(!attrs.cityId)
+            {
+                validationMessage="You must select a valid id number of the city";
+            }
+            if(!parseInt(attrs.street))
+            {
+                validationMessage="You must select a valid street number";
+            }
+            if(!parseInt(attrs.avenue))
+            {
+                validationMessage="You must select a valid avenue number";
+            }
+            if(attrs.street.length>3)
+            {
+                 validationMessage="You must select a valid street number";
+            }
+            if(attrs.avenue.length>3)
+            {
+                validationMessage="You must select a valid avenue number";
+            }
             if(validationMessage.length>0){
                return validationMessage;
             }
