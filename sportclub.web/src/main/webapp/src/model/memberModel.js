@@ -32,10 +32,6 @@ define(['model/_memberModel'], function() {
 
  	validate: function(attrs,options){
             var validationMessage = "";
-            var fecha=attrs.birthDate;
-            var anio=parseInt(fecha.substring(5,9));
-            var b=new Date().getFullYear();
-            var num=b-anio;
             if(!attrs.name){
                 validationMessage = "The name can't be empty.";
             }
@@ -56,10 +52,6 @@ define(['model/_memberModel'], function() {
             }
             if(attrs.partneridId===""){
                 validationMessage = "You must select a valid partner ID";
-            }
-            if(num>100)
-            {
-                validationMessage = "You must select a valid birth date";
             }
             if(attrs.docNumber.length<5)
             {
