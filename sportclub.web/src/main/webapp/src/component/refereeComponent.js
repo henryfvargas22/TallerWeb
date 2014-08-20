@@ -1,8 +1,8 @@
 /* ========================================================================
- * Copyright 2014 monitor
+ * Copyright 2014 mp.mancipe10
  *
  * Licensed under the MIT, The MIT License (MIT)
- * Copyright (c) 2014 monitor
+ * Copyright (c) 2014 mp.mancipe10
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,18 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         name: 'referee',
         model: App.Model.RefereeModel,
         listModel: App.Model.RefereeList,
-        controller : App.Controller.RefereeController
+        controller : App.Controller.RefereeController,
+        postInit : function( )
+        {
+            var self = this;
+            this.toolbarModel.set('showPrint',false);
+            this.toolbarModel.set('showSearch',false);
+            Backbone.on(self.componentId + '-referee-show-classification',function(params){
+                self.componentController.classification(params);
+            });
+        }
+        
+        
     });
     return App.Component.RefereeComponent;
 });

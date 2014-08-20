@@ -1,8 +1,8 @@
 /* ========================================================================
- * Copyright 2014 monitor
+ * Copyright 2014 mp.mancipe10
  *
  * Licensed under the MIT, The MIT License (MIT)
- * Copyright (c) 2014 monitor
+ * Copyright (c) 2014 mp.mancipe10
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,17 +33,22 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         model: App.Model.ChampionShipModel,
         listModel: App.Model.ChampionShipList,
         controller : App.Controller.ChampionShipController,
-        postInit: function(){
+        postInit : function( ){
             var self = this;
-            this.toolbarModel.set('createName', 'Crear');
+            this.toolbarModel.set('createName','Crear');
+            this.toolbarModel.set('refreshName','Refrescar');
+            this.toolbarModel.set('editName','Editar');
+            this.toolbarModel.set('deleteName','Eliminar');
+            this.toolbarModel.set('cancelName','Cancelar');
             this.toolbarModel.set('saveName', 'Guardar');
-            this.toolbarModel.set('cancelName', 'Cancelar');
-            this.toolbarModel.set('refreshName', 'Refrescar');
-            this.toolbarModel.set('showPrint', false);
-            this.toolbarModel.set('showSearch', false);
-            this.toolbarModel.set('title', 'Campeonato');
-            this.addButton({name: "Idioma", icon: "glyphicon-question-sign", }, function() {
-                 self.componentController.language();
+            this.toolbarModel.set('showPrint',false);
+            this.toolbarModel.set('showSearch',false);
+            this.toolbarModel.set('title','Campeonato');
+            this.addButton({name:"Idioma",icon: "glyphicon-question-sign"},function(){
+                self.componentController.language();
+            });
+            Backbone.on(self.componentId + '-championShip-show-days',function(params){
+                self.componentController.days(params);
             });
         }
     });
